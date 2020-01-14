@@ -74,7 +74,6 @@ def classroom_create(request):
 			classroom.save()
 			messages.success(request, "Classroom Successfully Created!")
 			return redirect('classroom-list')
-		print (form.errors)
 	context = {
 		"form": form,
 	}
@@ -91,7 +90,6 @@ def classroom_update(request, classroom_id):
 				form.save()
 				messages.success(request, "Successfully Edited!")
 				return redirect('classroom-list')
-			print (form.errors)
 	context = {
 	"form": form,
 	"classroom": classroom,
@@ -117,7 +115,6 @@ def student_create(request, classroom_id):
 				student.save()
 				messages.success(request, "Student Successfully Added!")
 				return redirect(classroom.get_absolute_url())
-			print (form.errors)
 	context = {
 	"form": form,
 	"classroom": classroom,
@@ -135,7 +132,6 @@ def student_update(request, classroom_id, student_id):
 				form.save()
 				messages.success(request, "Student Successfully Edited!")
 				return redirect(classroom.get_absolute_url())
-			print (form.errors)
 	context = {
 	"form": form,
 	"student": student,
