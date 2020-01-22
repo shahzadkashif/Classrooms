@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #000034;">
+      <a class="navbar-brand" href="{% url 'classroom-list' %}" style="color: white;">Classrooms</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+          {% if request.user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link" style="color: white;" href="{% url 'classroom-create' %}">Add New Classroom</a>
+            </li>
+
+            <li class="nav-item active mx-3">
+              <a class="btn btn-danger" style="color: white;" href="{% url 'signout' %}">Signout</a>
+            </li>
+            <a class="nav-link" style="color: white;">Welcome {{ request.user.username }}</a>
+
+          {% else %}
+
+            <li class="nav-item active mx-3">
+              <a class="btn btn-warning" style="color: white;" href="{% url 'signup' %}">Signup</a>
+            </li>
+
+            <li class="nav-item active mx-3">
+              <a class="btn btn-light" style="color: black;" href="{% url 'signin' %}">Signin</a>
+            </li>
+            
+          {% endif %}
+          
+        </ul>
+      </div>
+    </nav>
+    {% if messages %}
+      <div class="alert alert" style="background-color: #e3f2fd;" role="alert">
+        {% for message in messages %}
+          <div {% if message.tags %} class="{{ alert.tags }}" {% endif %}>{{ message }}</div>
+        {% endfor %}
+      </div>
+      <br>
+    {% endif %}
